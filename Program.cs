@@ -35,7 +35,7 @@ int[] Sum(int[] f, int[] g)
 
 string Print(int[] f)
 {
-  string[] pows = { "⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹" };
+  //string[] pows = { "⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹" };
   string output = String.Empty;
   for (int i = 0; i < f.Length; i++)
   {
@@ -43,12 +43,12 @@ string Print(int[] f)
     int t = f[i];
     if (f[i] == 0) continue;
     if (f[i] < 0) { output += " - "; }
-    else if (i != 0) { output += " + "; }
+    else if (i != 0 && (i-1) != 0) { output += " + "; }
 
     if (t < 0) t = -t;
     if (i == 1) { output += $"{t}x"; }
     if (i == 0) { output += $"{t}"; }
-    if (i != 1 && i != 0 && f[i] != 0) { output += $"{t}x{pows[i]}"; }
+    if (i != 1 && i != 0 && f[i] != 0) { output += $"{t}x^{i}"; }
     //if (flag && f[i] != 0 && i < f.Length - 1) output += " + ";
   }
 
@@ -63,10 +63,10 @@ int[] f = { 1, 0, 0, 0, -9, -6 };
 // 
 
 int[] g = { 0, 1, -2, -5, 0, 0, 7, 3 };
-Console.WriteLine(Print(f));
-Console.WriteLine(Print(g));
+Console.WriteLine($" f(x) = {Print(f)}");
+Console.WriteLine($" g(x) = {Print(g)}");
 int[] s = Sum(f, g);
-Console.WriteLine(Print(s));
+Console.WriteLine($" f(x)+g(x) = {Print(s)}");
 //f(x) = a0*x^0 + a1*x^1 + a2*x^2 + a3*x^3 + a4*x^4 + ....+ aN*x^N
 
 
